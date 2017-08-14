@@ -145,6 +145,7 @@ a:link{
 	font-size: 1rem;
 	font-weight: bold;
 }
+.login button,
 .container footer button {
 	height: 30px;
     width: 100px;
