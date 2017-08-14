@@ -7,7 +7,13 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<div class="container">
+	<div class="login" id="login">
+		<h2>Hello,图灵 Robot</h2>
+		<label for="nickname"></label>
+		<input type="text" id="nickname" class="nickname" placeholder="nickname">
+	</div>
+	
+	<div class="container displaydiv" id="container">
 		<header>
 			<img src="robot.png" height="34" width="40" alt="robot.png" class="robot">Hello,图灵
 		</header>
@@ -19,10 +25,13 @@
 		</section>
 		<footer>
 			<input type="text" class="input" placeholder="客官，在我身上写点东西！" id="input">
-			<button class="send" onclick="send()">send</button>
+			<button class="send" onclick="send()" id="send">send</button>
 		</footer>
 	</div>
 	<script src="jquery-3.2.1.min.js"></script>
 	<script src="js.js"></script>
+	<script language="javascript" type="text/javascript">
+
+</script>
 </body>
 </html>
