@@ -1,6 +1,7 @@
 //全局昵称
 var _nickname_ = ''
 
+
 $(document).ready(function(){
 	console.log(localStorage.getItem('nickname'))
 	if(localStorage.getItem('nickname')){
