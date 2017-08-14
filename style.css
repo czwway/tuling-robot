@@ -59,7 +59,6 @@ a:link{
 }
 .container section .list {
 	overflow: hidden;
-	margin: 10px 0;
 	position: relative;
 }
 .container section .question,
@@ -70,7 +69,7 @@ a:link{
     padding: 10px;
     border-radius: 5px;
     color: #000;
-    margin: 10px 0 10px 20px;
+    margin: 5px 0 5px 20px;
     word-break: break-word;
     float: right;
     margin-right: 20px;
