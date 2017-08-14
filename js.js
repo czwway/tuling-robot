@@ -85,7 +85,7 @@ function questionFun(question){
 	//
 	$.ajax({ 
 		type: 'POST',
-		url: "//www.tuling123.com/openapi/api",
+		url: "http://www.tuling123.com/openapi/api",
 		dataType:"json",
 		data:data,
 		async:false,
