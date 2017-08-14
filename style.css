@@ -1,0 +1,152 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html,body{
+	font-size: 87.5%;
+}
+
+body{
+	background-image: url(./robot.png);
+}
+a:link{
+	color: #000;
+}
+.container{
+	max-width: 360px;
+    margin: 0 auto;
+    border: 1px solid #000;
+    height: 100vh;
+}
+
+.container header{
+	position: relative;
+	background-color: #2b2a2a;
+	height: 5vh;
+	text-align: center;
+	color: #fff;
+	font-weight: bold;
+	line-height: 5vh;
+	font-size: 1.3rem;
+}
+.container header .robot {
+	display: inline-block;
+    position: absolute;
+    left: 20px;
+    height: 29px;
+    top: 2px;
+}
+
+
+
+.container section{
+	height: 80vh;
+	border: 1px solid transparent;
+	background-color: #efefef;
+}
+.container section .welcome {
+	margin: 10px auto;
+    width: 80%;
+    text-align: center;
+    color: #888;
+    user-select: none;
+}
+.container section .content {
+	height: 71.5vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.container section .list {
+	overflow: hidden;
+	margin: 10px 0;
+	position: relative;
+}
+.container section .question,
+.container section .answer {
+	display: inline-block;
+	max-width: 60%;
+    background-color: #39d839;
+    padding: 10px;
+    border-radius: 5px;
+    color: #000;
+    margin: 10px 0 10px 20px;
+    word-break: break-word;
+    float: right;
+    margin-right: 20px;
+}
+.container section .answer {
+	background-color: #fff;
+	float: none;
+}
+.container section .question:after{
+	content: '';
+    position: absolute;
+    right: 5px;
+    top: 16px;
+    display: inline-block;
+    border: 8px solid #39d839;
+    border-color: transparent;
+    border-left-color: #39d839;
+    width: 0px;
+    height: 0;
+}
+.container section .answer:after {
+	content: '';
+    position: absolute;
+    left: 5px;
+    top: 16px;
+    display: inline-block;
+    border: 8px solid #fff;
+    border-color: transparent;
+    border-right-color: #fff;
+    width: 0px;
+    height: 0;
+}
+
+
+.container footer{
+	/*background-color: #2b2a2a;*/
+	border-top: 1px solid #333;
+	height: 14.8vh;
+	padding: 10px;
+}
+.container footer .input {
+	width: 100%;
+	height: 30px;
+	border-radius: 5px;
+	padding: 0 10px;
+	line-height: 30px;
+	outline: none;
+	border:none;
+	border-bottom: 1px solid #333;
+	font-size: 1rem;
+	font-weight: bold;
+}
+.container footer button {
+	height: 30px;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #39d839;
+    font-size: 1.2rem;
+    display: inherit;
+    margin-top: 10px;
+    margin: 10px auto 0;
+}
+
+
+
+
+input::-webkit-input-placeholder { 
+	color: red; 
+} 
+
+
+
+
+
+::-webkit-scrollbar {
+	width: 0
+}
