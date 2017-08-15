@@ -1,46 +1,28 @@
+
 //全局昵称
 var _nickname_ = ''
 
 
-$(document).ready(function(){
-	console.log(localStorage.getItem('nickname'))
-	if(localStorage.getItem('nickname')){
-		console.log("null localStorage")
-	}
-
-	//如果本地有记录
-	if(localStorage.getItem('nickname')){
-		$("#login").addClass("displaydiv")
-		$("#container").removeClass("displaydiv")
-	}
-	//nickname enter
-	$('#nickname').bind('keypress',function(event){
-        if(event.keyCode == 13)      
-        {login()}
-     })
-	//对话
-	$('#input').bind('keypress',function(event){
-        if(event.keyCode == 13)      
-        {send()}
-     })
-})
-
-
+//输入昵称登录
 function login(){
-	let nickname_ = nickname.value.trim()
+	var nickname_ = nickname.value.trim()
 	if(!nickname_){
 		return false
 	}
 	_nickname_ = nickname_
 	localStorage.setItem("nickname", nickname_)
+	//过渡动画
 	$("#login").addClass("hidediv")
 	setTimeout(function(){
 		$("#login").addClass("displaydiv")
 		$("#container").removeClass("displaydiv")
-		$("#container").removeClass("hidediv")
+		$("#login").removeClass("hidediv")
 	},5000)
 	
 }
+
+
+
 
 function send () {
 	// function body...
@@ -56,6 +38,7 @@ function send () {
 		setTimeout(function(){
 			$("#container").addClass("displaydiv")
 			$("#login").removeClass("displaydiv")
+			$("#container").removeClass("hidediv")
 			$("#login").removeClass("hidediv")
 			input.value = ""
 			content.innerHTML = ''
@@ -106,7 +89,7 @@ function answerFun(data){
 }
 
 
-//向内容区域插入信息
+// //向内容区域插入信息
 function createTag(text,className){
 	var newParent = document.createElement("div")
 	newParent.setAttribute("class","list")
@@ -119,20 +102,21 @@ function createTag(text,className){
 	content.appendChild(newParent)
 }
 
-//图灵api响应信息类型判断
+// //图灵api响应信息类型判断
 function handleResponse(data) {
 	console.log("handleResponse:"+data.code)
 	switch(data.code) {
 		case 100000://文本类
         	return data.text
         case 200000://链接类
-        	return `${data.text} : <a href=${data.url}>${data.url}</a>`
-        case 302000://新闻类
-        	var listInfo = ''
-        	(data.list || []).forEach((it) => {
-                    listInfo += `\n文章: ${it.article}\n来源: ${it.source}\n链接: ${it.detailurl}`
-                })
-            return `${data.text}\n${listInfo}`
+        	return data.text+":<a href='"+data.url+"'>"+data.url+"</a>"
+        	// return `${data.text} : <a href=${data.url}>${data.url}</a>`
+        // case 302000://新闻类
+        // 	var listInfo = ''
+        // 	(data.list || []).forEach((it) => {
+        //             listInfo += `\n文章: ${it.article}\n来源: ${it.source}\n链接: ${it.detailurl}`
+        //         })
+        //     return `${data.text}\n${listInfo}`
         case 308000://菜谱类
         	return data.text
     	default:
@@ -140,14 +124,24 @@ function handleResponse(data) {
 	}
 }
 
+$(document).ready(function(){
 
-
-
-
-
-// document.onkeydown=function(event){
-//             var e = event || window.event || arguments.callee.caller.arguments[0]          
-//              if(e && e.keyCode==13){ // enter 键
-//                  send()
-//             }
-//         } 
+console.log(document.body.clientHeight)
+	$("#main").css('height',document.body.clientHeight-130)
+	$("#content").css('height',document.body.clientHeight-179)
+	//如果本地有记录，则显示对话窗口
+	if(localStorage.getItem('nickname')){
+		$("#login").addClass("displaydiv")
+		$("#container").removeClass("displaydiv")
+	}
+	//nickname enter事件
+	$('#nickname').bind('keypress',function(event){
+        if(event.keyCode == 13)      
+        {login()}
+     })
+	//对话 enter事件
+	$('#input').bind('keypress',function(event){
+        if(event.keyCode == 13)      
+        {send()}
+     })
+})
