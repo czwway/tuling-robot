@@ -51,7 +51,7 @@ function questionFun(question){
 	createTag(question,"question")
 	setTimeout(function(){
 		postApi(question)
-		},1500);
+		},2500);
 }
 
 //生成回答对话框
