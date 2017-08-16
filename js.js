@@ -1,7 +1,5 @@
-
 //全局昵称
 var _nickname_ = ''
-
 
 //输入昵称登录
 function login(){
@@ -10,6 +8,7 @@ function login(){
 		return false
 	}
 	_nickname_ = nickname_
+	//本地保存
 	localStorage.setItem("nickname", nickname_)
 	//过渡动画
 	$("#login").addClass("hidediv")
@@ -18,14 +17,9 @@ function login(){
 		$("#container").removeClass("displaydiv")
 		$("#login").removeClass("hidediv")
 	},5000)
-	
 }
 
-
-
-
 function send () {
-	// function body...
 	//获取输入框文字信息
 	var question = input.value.trim()
 	if(!question){
@@ -45,51 +39,29 @@ function send () {
 		},5000)
 		return false
 	}
-	// console.log("send:"+question)
+	// 生成问题对话框
 	questionFun(question)
 	//清空输入框
 	input.value = ""
-	//
-	content.scrollTop = content.scrollHeight
 }
 
-
-
-
+//生成问题对话框
 function questionFun(question){
 	//打印问题
 	createTag(question,"question")
-	//
-	var data = {     
-		"key": "88e1b9427e814348940bc4d5f669a52e",            
-		"info": question,
-		"userid": _nickname_
-	}
-	//
-	$.ajax({ 
-		type: 'POST',
-		url: "http://www.tuling123.com/openapi/api",
-		dataType:"json",
-		data:data,
-		async:false,
-		// context: document.body, 
-		success: function(data){
-        	console.log(data)
-        	answerFun(data)
-    	}
-	})
-	// answerFun(question)
+	setTimeout(function(){
+		postApi(question)
+		},1500);
 }
+
+//生成回答对话框
 function answerFun(data){
-	
-	
 	var zczc = handleResponse(data)
 	console.log(zczc)
 	createTag(zczc,"answer")
 }
 
-
-// //向内容区域插入信息
+//向内容区域插入信息
 function createTag(text,className){
 	var newParent = document.createElement("div")
 	newParent.setAttribute("class","list")
@@ -100,6 +72,8 @@ function createTag(text,className){
 	newParent.appendChild(newChild)
 
 	content.appendChild(newParent)
+	//保持对话框滚动条在底部
+	content.scrollTop = content.scrollHeight
 }
 
 // //图灵api响应信息类型判断
@@ -124,11 +98,32 @@ function handleResponse(data) {
 	}
 }
 
-$(document).ready(function(){
+//图灵api ajax
+function postApi(question){
+	//初始化json数据
+	var data = {     
+		"key": "88e1b9427e814348940bc4d5f669a52e",            
+		"info": question,
+		"userid": _nickname_
+	}
+	//开始ajax
+	$.ajax({ 
+		type: 'POST',
+		url: "http://www.tuling123.com/openapi/api",
+		dataType:"json",
+		data:data,
+		async:false,
+		success: function(data){
+        	console.log(data)
+        	answerFun(data)
+    	}
+	})
+}
 
-console.log(document.body.clientHeight)
+$(document).ready(function(){
+	//初始化
 	$("#main").css('height',document.body.clientHeight-130)
-	$("#content").css('height',document.body.clientHeight-179)
+	$("#content").css('height',document.body.clientHeight-182)
 	//如果本地有记录，则显示对话窗口
 	if(localStorage.getItem('nickname')){
 		$("#login").addClass("displaydiv")
